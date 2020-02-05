@@ -42,7 +42,7 @@ import {
 } from 'rxjs';
 import { filter, map, take } from 'rxjs/operators';
 
-import { readKeyCode } from '@dynatrace/barista-components/core';
+import { _readKeyCode } from '@dynatrace/barista-components/core';
 
 import { DtFilterFieldRange } from './filter-field-range';
 
@@ -217,7 +217,7 @@ export class DtFilterFieldRangeTrigger implements OnDestroy {
       this._overlayRef = this._overlay.create(this._getOverlayConfig());
 
       this._overlayRef.keydownEvents().subscribe(event => {
-        const keyCode = readKeyCode(event);
+        const keyCode = _readKeyCode(event);
         // Close when pressing ESCAPE or ALT + UP_ARROW, based on the a11y guidelines.
         // See: https://www.w3.org/TR/wai-aria-practices-1.1/#textbox-keyboard-interaction
         if (keyCode === ESCAPE || (keyCode === UP_ARROW && event.altKey)) {

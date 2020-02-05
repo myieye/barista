@@ -72,7 +72,7 @@ import {
   _countGroupLabelsBeforeOption,
   _getOptionScrollPosition,
   isDefined,
-  readKeyCode,
+  _readKeyCode,
   stringify,
 } from '@dynatrace/barista-components/core';
 import { DtFormField } from '@dynatrace/barista-components/form-field';
@@ -378,7 +378,7 @@ export class DtAutocompleteTrigger<T>
 
   /** @internal Handler for the users key down events. */
   _handleKeydown(event: KeyboardEvent): void {
-    const keyCode = readKeyCode(event);
+    const keyCode = _readKeyCode(event);
 
     // Prevent the default action on all escape key presses. This is here primarily to bring IE
     // in line with other browsers. By default, pressing escape on IE will cause it to revert
@@ -420,7 +420,7 @@ export class DtAutocompleteTrigger<T>
       this._overlayRef = this._overlay.create(this._getOverlayConfig());
 
       this._overlayRef.keydownEvents().subscribe(event => {
-        const keyCode = readKeyCode(event);
+        const keyCode = _readKeyCode(event);
         // Close when pressing ESCAPE or ALT + UP_ARROW, based on the a11y guidelines.
         // See: https://www.w3.org/TR/wai-aria-practices-1.1/#textbox-keyboard-interaction
         if (keyCode === ESCAPE || (keyCode === UP_ARROW && event.altKey)) {
